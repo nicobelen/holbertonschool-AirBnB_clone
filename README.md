@@ -1,7 +1,7 @@
 # holbertonschool-AirBnB_clone
 Project of Holberton
 
-Description of Proyect:
+Description of Project:
 
 En este proyecto hicimos una clase principal que se encarga de la inisializacion, serialización y deserialización de nuestras futuras instancias.
 Creamos un flujo simple de de serialización/deserialización: Instancia <-> Diccionario <-> Cadena JSON <-> archivo

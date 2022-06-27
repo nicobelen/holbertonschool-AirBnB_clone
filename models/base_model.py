@@ -3,14 +3,25 @@
 """promary class BaseModel"""
 
 import sys
+from abc import ABC, abstractmethod
+import uuid
+from datetime import datetime
 
 class BaseModel():
+    """instantiation of user"""
     def __init__(self, *args, **kwargs):
-
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.utcnow()
+        self.updated_at = datetime.utcnow()
+    
     def save(self):
         """atribute save"""
-    def __str__:
+        self.updated_at = datetime.utcnow()
+        
+    def __str__(self):
         """atribute str"""
-        return("{} {} {}".format):
+        return(f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
 
-    to_dict(self):
+    def to_dict(self):
+        """returns a dictionary containing all keys and values"""
+        
