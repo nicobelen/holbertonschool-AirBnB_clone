@@ -14,9 +14,6 @@ class BaseModel():
         self.created_at = datetime.utcnow()
         self.updated_at = datetime.utcnow()
 
-    @id.setter
-    def set(self, id):
-        self.id = str(id)
     
     @classmethod
     def save(self):
