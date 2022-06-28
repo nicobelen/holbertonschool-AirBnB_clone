@@ -2,5 +2,5 @@
 
 """City Amety"""
 
-class Amenty(BaseModel):
+class Place(BaseModel):
     name = ""
