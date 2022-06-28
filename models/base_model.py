@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-"""promary class BaseModel"""
-from calendar import formatstring
-from locale import format_string
+"""primary class BaseModel"""
+
+
 import sys
 from abc import ABC, abstractmethod
 import uuid
