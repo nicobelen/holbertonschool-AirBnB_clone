@@ -2,8 +2,13 @@
 """Serializes instances to a JSON file and deserializes JSON file to instances"""
 
 from models.user import User
-import json
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
+from models.state import State
 
+import json
 
 class FileStorage():
     """initialization of FileStorage"""
