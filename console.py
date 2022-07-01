@@ -2,6 +2,7 @@
 
 """Console"""
 
+from ast import arguments
 from models.base_model import BaseModel
 from models.user import User
 from models.city import City
@@ -75,13 +76,29 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, line):
         arguments = line.split()
-        if arguments[0] not in clases:
-            print("** class doesn't exist **")
+        dic_list = []
+        dic = storage.all()
+        if arguments == []:
+            for key in dic:
+                elem = dic[key]
+                dic_list.append(str(elem))
+            print(dic_list)
             return
         else:
-            dic = storage.all()
-            print(dic)
+            if arguments[0] in clases:
+                for key, value in dic.items():
+                    if arguments[0] == value.__class__.__name__:
+                        elem = dic[key]
+                        dic_list.append(str(elem))
+                print(dic_list)
+            else:
+                print("** class doesn't exist **")
+                return
             return
+
+    def do_update(self, line):
+        arguments = line.split()
+        
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
