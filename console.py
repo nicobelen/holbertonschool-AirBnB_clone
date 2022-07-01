@@ -71,7 +71,17 @@ class HBNBCommand(cmd.Cmd):
         key = f"{arguments[0]}.{arguments[1]}"
         if key in dic:
             del(dic[key])
-            return         
+            return
+
+    def do_all(self, line):
+        arguments = line.split()
+        if arguments[0] not in clases:
+            print("** class doesn't exist **")
+            return
+        else:
+            dic = storage.all()
+            print(dic)
+            return
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
