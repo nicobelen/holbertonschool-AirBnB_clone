@@ -13,9 +13,15 @@ from models.state import State
 from models import storage
 import cmd
 import sys
+import json
 
 clases = {"State": State, "User": User, "Place": Place, "Review": Review,
           "Amenity": Amenity, "City": City, "BaseModel": BaseModel}
+
+def save_to_json_file(my_obj, filename):
+    """writes an object to a textfile"""
+    with open(filename, 'w', encoding="utf-8") as f:
+        return f.write(json.dumps(my_obj))
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb)"
@@ -98,6 +104,35 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         arguments = line.split()
+        dic = storage.all()
+        if arguments == []:
+            print("** class name missing **")
+            return
+        if len(arguments) == 1:
+            print("** instance id missing **")
+            return
+        if len(arguments) == 2:
+            print("** attribute name missing **")
+            return
+        if len(arguments) == 3:
+            print("** value missing **")
+            return
+        else:
+            if arguments[0] in clases:
+                if arguments[1] not in dic:
+                    print("** no instance found **")
+                    return
+                name_atr = arguments[2]
+                value_atr = arguments[3]
+                for key, value in dic.items():
+                    if arguments[1] == value:
+                        elem = dic[key]
+                        elem = setattr(elem, name_atr, value_atr)
+                save_to_json_file(elem, "file.json")
+            else:
+                print("** class doesn't exist **")
+                return
+            return
         
 
 if __name__ == '__main__':
