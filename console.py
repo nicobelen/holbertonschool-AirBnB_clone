@@ -108,13 +108,13 @@ class HBNBCommand(cmd.Cmd):
         if arguments == []:
             print("** class name missing **")
             return
-        if len(arguments) == 1:
+        elif len(arguments) == 1:
             print("** instance id missing **")
             return
-        if len(arguments) == 2:
+        elif len(arguments) == 2:
             print("** attribute name missing **")
             return
-        if len(arguments) == 3:
+        elif len(arguments) == 3:
             print("** value missing **")
             return
         else:
@@ -122,7 +122,7 @@ class HBNBCommand(cmd.Cmd):
                 name_atr = arguments[2]
                 value_atr = arguments[3]
                 for key, value in dic.items():
-                    if f"{arguments[0]}.{arguments[1]}" == value:
+                    if f"{arguments[0]}.{arguments[1]}" == dic.keys():
                         print("encontro")
                         elem = dic[key]
                         elem = setattr(elem, name_atr, value_atr)
