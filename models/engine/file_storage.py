@@ -3,7 +3,6 @@
 deserializes JSON file to instances"""
 
 
-from models.user import User
 import json
 
 
