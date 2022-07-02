@@ -3,6 +3,7 @@
 deserializes JSON file to instances"""
 
 import json
+from models.user import User
 
 
 class FileStorage():
