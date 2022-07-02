@@ -13,26 +13,28 @@ from models.state import State
 from models import storage
 import cmd
 import sys
-import json
 
 clases = {"State": State, "User": User, "Place": Place, "Review": Review,
           "Amenity": Amenity, "City": City, "BaseModel": BaseModel}
 
-def save_to_json_file(my_obj, filename):
-    """writes an object to a textfile"""
-    with open(filename, 'w', encoding="utf-8") as f:
-        return f.write(json.dumps(my_obj))
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb)"
 
     def do_quit(self, line):
-        "comand quit"
+        "Quit command to exit the program"
         return True
 
     def do_EOF(self, line):
         "comand eof"
         return True
+
+    def emptyline(self):
+        """command empty line"""
+        pass
+
+    def do_help(self, line):
+        return super().do_help(line)
 
     def do_create(self, line):
         arguments = line.split()
