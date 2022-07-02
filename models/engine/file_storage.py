@@ -1,7 +1,9 @@
 #!/usr/bin/python3
-"""Serializes instances to a JSON file and deserializes JSON file to instances"""
+"""Serializes instances to a JSON file and
+deserializes JSON file to instances"""
 
 import json
+
 
 class FileStorage():
     """initialization of FileStorage"""
@@ -17,7 +19,7 @@ class FileStorage():
     def save(self):
         """writes an object to a textfile"""
         with open(self.__file_path, 'w', encoding="utf-8") as f:
-            return f.write(json.dumps(self.__objects, default = str))
+            return f.write(json.dumps(self.__objects, default=str))
 
     def reload(self):
         """creates an object from a “JSON file”"""
