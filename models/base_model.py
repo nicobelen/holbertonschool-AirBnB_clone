@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+
 """primary class BaseModel"""
 
 
@@ -9,6 +10,7 @@ import uuid
 from datetime import datetime
 from models import storage
 
+
 class BaseModel():
     """instantiation of user"""
     def __init__(self, *args, **kwargs):
@@ -17,15 +19,16 @@ class BaseModel():
                 if key == "id":
                     self.id = value
                 elif key == "created_at":
-                    self.created_at = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+                    self.created_at = datetime.strptime(
+                        value, '%Y-%m-%dT%H:%M:%S.%f')
                 elif key == "updated_at":
-                    self.updated_at = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+                    self.updated_at = datetime.strptime(
+                        value, '%Y-%m-%dT%H:%M:%S.%f')
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.utcnow()
             self.updated_at = datetime.utcnow()
             storage.new(self)
-
 
     @classmethod
     def save(self):
@@ -33,7 +36,7 @@ class BaseModel():
         storage.save()
         dateobj = datetime.utcnow()
         self.updated_at = dateobj.strftime("%Y-%m-%dT%H:%M:%S.%f")
-        
+
     def __str__(self):
         """atribute str"""
         return(f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
