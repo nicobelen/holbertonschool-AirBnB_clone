@@ -121,16 +121,13 @@ class HBNBCommand(cmd.Cmd):
             if arguments[0] in clases:
                 name_atr = arguments[2]
                 value_atr = arguments[3]
-                for key, value in dic.items():
-                    if f"{arguments[0]}.{arguments[1]}" == dic.keys():
-                        print("encontro")
-                        elem = dic[key]
-                        elem = setattr(elem, name_atr, value_atr)
-                    else:
-                        print("** no instance found **")
-                        return
-
-                save_to_json_file(elem, "file.json")
+                key = f"{arguments[0]}.{arguments[1]}"
+                if key in dic:
+                    setattr(dic[key], name_atr, value_atr)
+                    storage.save()
+                else:
+                    print("** no instance found **")
+                    return
             else:
                 print("** class doesn't exist **")
                 return
