@@ -4,6 +4,14 @@ deserializes JSON file to instances"""
 
 
 import json
+from os.path import exists
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 
 class FileStorage():
@@ -12,9 +20,11 @@ class FileStorage():
     __objects = {}
 
     def all(self):
+        """returns the dictionary __objects"""
         return self.__objects
 
     def new(self, obj):
+        """sets in __objects the obj with key <obj class name>.id"""
         self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
 
     def save(self):
