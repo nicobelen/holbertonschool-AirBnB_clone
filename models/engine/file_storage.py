@@ -36,7 +36,11 @@ class FileStorage():
     def reload(self):
         """creates an object from a “JSON file”"""
         try:
-            with open(self.__file_path, 'r', encoding="utf-8") as f:
-                self.__objects = json.loads(f.read())
-        except Exception:
-            pass
+            with open(FileStorage.__file_path) as f:
+                aux = json.load(f)
+                for o in aux.values():
+                    cls_name = o["__class__"]
+                    del o["__class__"]
+                    self.new(eval(cls_name)(**o))
+        except FileNotFoundError:
+            return
