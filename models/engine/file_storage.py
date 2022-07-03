@@ -28,8 +28,10 @@ class FileStorage():
 
     def save(self):
         """writes an object to a textfile"""
-        with open(self.__file_path, 'w', encoding="utf-8") as f:
-            return f.write(json.dumps(self.__objects, default=str))
+        odict = FileStorage.__objects
+        aux = {obj: odict[obj].to_dict() for obj in odict.keys()}
+        with open(FileStorage.__file_path, "w") as f:
+            json.dump(aux, f)
 
     def reload(self):
         """creates an object from a “JSON file”"""
