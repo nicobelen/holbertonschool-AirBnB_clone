@@ -48,6 +48,7 @@ class HBNBCommand(cmd.Cmd):
             instance = getattr(sys.modules[__name__], arguments[0])
             inst = instance()
             print(inst.id)
+            storage.save()
         else:
             print("** class doesn't exist **")
 
@@ -83,6 +84,7 @@ class HBNBCommand(cmd.Cmd):
         key = f"{arguments[0]}.{arguments[1]}"
         if key in dic:
             del(dic[key])
+            storage.save()
             return
 
     def do_all(self, line):
