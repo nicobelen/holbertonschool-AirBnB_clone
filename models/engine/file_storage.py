@@ -21,19 +21,13 @@ class FileStorage():
 
     def save(self):
         """writes an object to a textfile"""
-        odict = FileStorage.__objects
-        aux = {obj: odict[obj].to_dict() for obj in odict.keys()}
-        with open(FileStorage.__file_path, "w") as f:
-            json.dump(aux, f)
+        with open(self.__file_path, 'w', encoding="utf-8") as f:
+            return f.write(json.dumps(self.__objects, default=str))
 
     def reload(self):
         """creates an object from a “JSON file”"""
         try:
-            with open(FileStorage.__file_path) as f:
-                aux = json.load(f)
-                for o in aux.values():
-                    cls_name = o["__class__"]
-                    del o["__class__"]
-                    self.new(eval(cls_name)(**o))
-        except FileNotFoundError:
-            return
+            with open(self.__file_path, 'r', encoding="utf-8") as f:
+                self.__objects = json.loads(f.read())
+        except Exception:
+            pass
