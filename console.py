@@ -19,7 +19,10 @@ clases = {"State": State, "User": User, "Place": Place, "Review": Review,
 
 
 class HBNBCommand(cmd.Cmd):
-    prompt = "(hbnb)"
+    if sys.stdin and sys.stdin.isatty():
+        prompt = "(hbnb)"
+    else:
+        prompt = "(hbnb)"
 
     def do_quit(self, line):
         "Quit command to exit the program"
