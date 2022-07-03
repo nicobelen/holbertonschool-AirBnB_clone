@@ -10,6 +10,7 @@ from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
 from models.state import State
+from models.engine.file_storage import FileStorage
 from models import storage
 import cmd
 import sys
@@ -48,6 +49,7 @@ class HBNBCommand(cmd.Cmd):
             instance = getattr(sys.modules[__name__], arguments[0])
             inst = instance()
             print(inst.id)
+            storage.save()
         else:
             print("** class doesn't exist **")
 
@@ -55,18 +57,14 @@ class HBNBCommand(cmd.Cmd):
         arguments = line.split()
         if arguments == []:
             print("** class name missing **")
-            return
-        if arguments[0] not in clases:
+        elif arguments[0] not in clases:
             print("** class doesn't exist **")
-            return
-        if len(arguments) == 1:
+        elif len(arguments) == 1:
             print("** instance id missing **")
-            return
-        dic = storage.all()
+        dic = FileStorage.all()
         key = f"{arguments[0]}.{arguments[1]}"
         if key in dic:
             print(dic[key])
-            return
 
     def do_destroy(self, line):
         arguments = line.split()
@@ -79,22 +77,21 @@ class HBNBCommand(cmd.Cmd):
         if len(arguments) == 1:
             print("** instance id missing **")
             return
-        dic = storage.all()
+        dic = FileStorage.all()
         key = f"{arguments[0]}.{arguments[1]}"
         if key in dic:
             del(dic[key])
-            return
+            storage.save()
 
     def do_all(self, line):
         arguments = line.split()
         dic_list = []
-        dic = storage.all()
+        dic = FileStorage.all()
         if arguments == []:
             for key in dic:
                 elem = dic[key]
                 dic_list.append(str(elem))
             print(dic_list)
-            return
         else:
             if arguments[0] in clases:
                 for key, value in dic.items():
@@ -104,24 +101,18 @@ class HBNBCommand(cmd.Cmd):
                 print(dic_list)
             else:
                 print("** class doesn't exist **")
-                return
-            return
 
     def do_update(self, line):
         arguments = line.split()
-        dic = storage.all()
+        dic = FileStorage.all()
         if arguments == []:
             print("** class name missing **")
-            return
         elif len(arguments) == 1:
             print("** instance id missing **")
-            return
         elif len(arguments) == 2:
             print("** attribute name missing **")
-            return
         elif len(arguments) == 3:
             print("** value missing **")
-            return
         else:
             if arguments[0] in clases:
                 name_atr = arguments[2]
@@ -132,12 +123,8 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
                 else:
                     print("** no instance found **")
-                    return
             else:
                 print("** class doesn't exist **")
-                return
-            return
-        
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
