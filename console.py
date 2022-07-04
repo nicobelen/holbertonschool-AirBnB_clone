@@ -2,7 +2,7 @@
 
 """Console"""
 
-from ast import arguments
+from ast import arg, arguments
 from models.base_model import BaseModel
 from models.user import User
 from models.city import City
@@ -140,6 +140,13 @@ class HBNBCommand(cmd.Cmd):
                 return
             return
 
+    def default(self, line):
+        arguments = line.split(".")
+        if len(arguments) == 2:
+            if arguments[0] in clases:
+                if arguments[1] == "all()":
+                    self.do_all(arguments[0])
+                    return
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
