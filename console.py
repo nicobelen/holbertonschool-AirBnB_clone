@@ -173,5 +173,6 @@ class HBNBCommand(cmd.Cmd):
                 elif showsplit[0] == "destroy":
                     self.do_destroy(f"{arguments[0]} {showsplit[1]}")
 
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
