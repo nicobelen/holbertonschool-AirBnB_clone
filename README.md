@@ -16,8 +16,8 @@ It is executed with the following command `./console.py`
 
 These are the commands that are used in our console and what they are for:
 
-- Create: Create a new instance of BaseModel.
-- Update: Updates an instance based on the class name and id by adding or updating attribute.
+- **Create**: Create a new instance of BaseModel.
+- `Update`: Updates an instance based on the class name and id by adding or updating attribute.
 - Show: Prints the string representation of an instance based on the class name.
 - All: Prints all string representation of all instances based or not on the class name.
 - Destroy: Deletes an instance based on the class name and id.
