@@ -14,17 +14,55 @@ $ chmod u+x console.py
 
 It is executed with the following command `./console.py`
 
+You can also type `python3 ./console.py` if you want to skip the permission part
+
 These are the commands that are used in our console and what they are for:
 
 - **Create**: Create a new instance of BaseModel.
-- `Update`: Updates an instance based on the class name and id by adding or updating attribute.
-- Show: Prints the string representation of an instance based on the class name.
-- All: Prints all string representation of all instances based or not on the class name.
-- Destroy: Deletes an instance based on the class name and id.
-- Help: Provides information about the command.
-- Quit: Quits the console.
+- **Update**: Updates an instance based on the class name and id by adding or updating attribute.
+- **Show**: Prints the string representation of an instance based on the class name.
+- **All**: Prints all string representation of all instances based or not on the class name.
+- **Destroy**: Deletes an instance based on the class name and id.
+- **Help**: Provides information about the command.
+- **Quit**: Quits the console.
 
-We created a simple flow of serealization/deserealization: Instance <-> Dictionary <-> JSON chain <-> archive.
-We created all of the classes utilyzed for AirBnB (User, State, City, Place...) that inherit the BaseModel.
-We created the first abstract storage motor of the project: archive storage.
-We created every unit test to validate all of our classes and the storage motor.
+
+|**Objects**             |HTML|
+|-----------|-----------------------------|
+|User|      Name and other iformation about the user|
+|City|      City in where the place is in|
+|State|     State where the City is located|
+|Place|     Information about, in this case the hotel|
+|Review|    What people think of the place they stayed at|
+|Amenity|   What features the place has|
+
+
+## How to execute commands:
+
+**Syntax**
+```
+<Command> <classname> <id>
+```
+
+> **Notice**: Note that we don't use id with the create, help and quit commands.
+
+
+## Examples:
+
+
+```
+$ (hbnb) create User
+a2324758-661d-46f0-8ac2-84e01e5c8aef
+```
+
+
+```
+$ (hbnb) show User a2324758-661d-46f0-8ac2-84e01e5c8aef
+```
+
+## Authors:
+
+Daniel Muller | [GitHub](https://github.com/Vinill).
+
+Nicolas Belen | [GitHub](https://github.com/nicobelen).
+
