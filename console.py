@@ -168,6 +168,8 @@ class HBNBCommand(cmd.Cmd):
                 showsplit[1] = showsplit[1][:-1]
                 if showsplit[0] == "show":
                     self.do_show(f"{arguments[0]} {showsplit[1]}")
+                elif showsplit[0] == "destroy":
+                    self.do_destroy(f"{arguments[0]} {showsplit[1]}")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
