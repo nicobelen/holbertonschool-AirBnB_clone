@@ -26,7 +26,7 @@ These are the commands that are used in our console and what they are for:
 
 |**Objects**             |HTML|
 |-----------|-----------------------------|
-|User|      |Name and other iformation about the user|
+|User|      Name and other iformation about the user|
 |City|      |City in where the place is in|
 |State|     |State where the City is located|
 |Place|     |Information about, in this case the hotel|
