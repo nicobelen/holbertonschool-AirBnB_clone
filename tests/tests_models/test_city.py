@@ -1,34 +1,41 @@
 #!/usr/bin/python3
 """
-Unittest for city
+    Unit tests for City
 """
-from models.city import City
-import datetime
+
 import unittest
+from models.base_model import BaseModel
+from models.city import City
+import pycodestyle
 
 
-class CityCase(unittest.TestCase):
-    """Tests for City's attributes and instances """
+class CityTest(unittest.TestCase):
+    """Test for City"""
 
-    cityx = City()
+    def test_pep8_base(self):
+        """check PEP8 style"""
+        syntaxis = pycodestyle.StyleGuide(quit=True)
+        check = syntaxis.check_files(['models/city.py'])
+        self.assertEqual(
+            check.total_errors, 0,
+            "Found code style errors"
+        )
 
-    def test_hasattr(self):
-        """Tests for attributes"""
-        self.assertTrue(hasattr(self.cityx, "state_id"))
-        self.assertTrue(hasattr(self.cityx, "name"))
+    def test_subclass(self):
+        """test if City is subclass of BaseModel"""
+        self.assertTrue(issubclass(City, BaseModel))
 
+    def test_atrr(self):
+        """test atributtes class"""
+        self.assertEqual(City.state_id, "")
+        self.assertEqual(City.name, "")
 
-        self.assertTrue(hasattr(self.cityx, "id"))
-        self.assertTrue(hasattr(self.cityx, "created_at"))
-        self.assertTrue(hasattr(self.cityx, "updated_at"))
+    def test_instance(self):
+        """Test instance class"""
+        my_city = City()
+        self.assertEqual(my_city.state_id, "")
+        self.assertEqual(my_city.name, "")
 
-    def test_types(self):
-        """Test for instances"""
-        self.assertIsInstance(self.cityx.state_id, str)
-        self.assertIsInstance(self.cityx.name, str)
-        self.assertIsInstance(self.cityx.id, str)
-        self.assertIsInstance(self.cityx.created_at, datetime.datetime)
-        self.assertIsInstance(self.cityx.updated_at, datetime.datetime)
 
 if __name__ == '__main__':
     unittest.main()

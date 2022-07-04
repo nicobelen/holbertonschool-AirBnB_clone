@@ -1,33 +1,40 @@
 #!/usr/bin/python3
 """
-Unittest for amenity
+    Unit tests for Amenity
 """
-from models.amenity import Amenity
-import datetime
+
 import unittest
+from models.base_model import BaseModel
+from models.amenity import Amenity
+import pycodestyle
 
 
-class AmenityCase(unittest.TestCase):
-    """Test for methods and instances"""
-    amenitix = Amenity()
+class AmenityTest(unittest.TestCase):
+    """Test for Amenity"""
 
-    def test_hasattr(self):
-        """Tets for attributes"""
-        self.assertTrue(hasattr(self.amenitix, "name"))
+    def test_pep8_base(self):
+        """check PEP8 style"""
+        syntaxis = pycodestyle.StyleGuide(quit=True)
+        check = syntaxis.check_files(['models/amenity.py'])
+        self.assertEqual(
+            check.total_errors, 0,
+            "Found code style errors"
+        )
 
-        # BaseModel Attributes
-        self.assertTrue(hasattr(self.amenitix, "id"))
-        self.assertTrue(hasattr(self.amenitix, "created_at"))
-        self.assertTrue(hasattr(self.amenitix, "updated_at"))
+    def test_subclass(self):
+        """test if Amenity is subclass of BaseModel"""
+        self.assertTrue(issubclass(Amenity, BaseModel))
 
-    def test_types(self):
-        """Tests for Instances"""
-        self.assertIsInstance(self.amenitix.name, str)
-        
-        # BaseModel Attributes
-        self.assertIsInstance(self.amenitix.id, str)
-        self.assertIsInstance(self.amenitix.created_at, datetime.datetime)
-        self.assertIsInstance(self.amenitix.updated_at, datetime.datetime)
+    def test_attr(self):
+        """test attribute class"""
+        self.assertEqual(Amenity.name, "")
+
+    def test_instance(self):
+        """Test instance of class"""
+        my_amenity = Amenity()
+        self.assertEqual(my_amenity.name, "")
+        self.assertTrue(isinstance(my_amenity, BaseModel))
+
 
 if __name__ == '__main__':
     unittest.main()

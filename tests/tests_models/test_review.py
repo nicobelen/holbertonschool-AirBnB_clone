@@ -1,33 +1,43 @@
 #!/usr/bin/python3
 """
-Unittests for review
+    Unit tests for Review
 """
-from models.review import Review
-import datetime
+
 import unittest
+from models.base_model import BaseModel
+from models.review import Review
+import pycodestyle
 
 
-class ReviewCase(unittest.TestCase):
-    """Tests for methods and instances of Review"""
-    reviewx = Review()
+class ReviewTest(unittest.TestCase):
+    """Test for Review"""
 
-    def test_hasattr(self):
-        """Test for attributes"""
-        self.assertTrue(hasattr(self.reviewx, "place_id"))
-        self.assertTrue(hasattr(self.reviewx, "user_id"))
-        self.assertTrue(hasattr(self.reviewx, "text"))
-        self.assertTrue(hasattr(self.reviewx, "id"))
-        self.assertTrue(hasattr(self.reviewx, "created_at"))
-        self.assertTrue(hasattr(self.reviewx, "updated_at"))
+    def test_pep8_base(self):
+        """check PEP8 style"""
+        syntaxis = pycodestyle.StyleGuide(quit=True)
+        check = syntaxis.check_files(['models/review.py'])
+        self.assertEqual(
+            check.total_errors, 0,
+            "Found code style errors"
+        )
 
-    def test_types(self):
-        """Tests for instances"""
-        self.assertIsInstance(self.reviewx.place_id, str)
-        self.assertIsInstance(self.reviewx.user_id, str)
-        self.assertIsInstance(self.reviewx.text, str)
-        self.assertIsInstance(self.reviewx.id, str)
-        self.assertIsInstance(self.reviewx.created_at, datetime.datetime)
-        self.assertIsInstance(self.reviewx.updated_at, datetime.datetime)
+    def test_subclass(self):
+        """test if Review is subclass of BaseModel"""
+        self.assertTrue(issubclass(Review, BaseModel))
+
+    def test_attr(self):
+        """test attributes class"""
+        self.assertEqual(Review.place_id, "")
+        self.assertEqual(Review.user_id, "")
+        self.assertEqual(Review.text, "")
+
+    def test_instance(self):
+        """test instance class"""
+        my_review = Review()
+        self.assertEqual(my_review.place_id, "")
+        self.assertEqual(my_review.user_id, "")
+        self.assertEqual(my_review.text, "")
+
 
 if __name__ == '__main__':
     unittest.main()

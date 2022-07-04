@@ -1,29 +1,40 @@
 #!/usr/bin/python3
 """
-Unittest for State
+    Unit tests for State
 """
-from models.state import State
-import datetime
+
 import unittest
+from models.base_model import BaseModel
+from models.state import State
+import pycodestyle
 
 
-class StateCase(unittest.TestCase):
-    """Tests for methods and instances"""
-    statex = State()
+class StateTest(unittest.TestCase):
+    """Test for State"""
 
-    def test_hasattr(self):
-        """Test for attributes"""
-        self.assertTrue(hasattr(self.statex, "name"))
-        self.assertTrue(hasattr(self.statex, "id"))
-        self.assertTrue(hasattr(self.statex, "created_at"))
-        self.assertTrue(hasattr(self.statex, "updated_at"))
+    def test_pep8_base(self):
+        """check PEP8 style"""
+        syntaxis = pycodestyle.StyleGuide(quit=True)
+        check = syntaxis.check_files(['models/state.py'])
+        self.assertEqual(
+            check.total_errors, 0,
+            "Found code style errors"
+        )
 
-    def test_types(self):
-        """Test for instances"""
-        self.assertIsInstance(self.statex.name, str)
-        self.assertIsInstance(self.statex.id, str)
-        self.assertIsInstance(self.statex.created_at, datetime.datetime)
-        self.assertIsInstance(self.statex.updated_at, datetime.datetime)
+    def test_subclass(self):
+        """test if State is subclass of BaseModel"""
+        self.assertTrue(issubclass(State, BaseModel))
+
+    def test_attr(self):
+        """test atributte class"""
+        self.assertEqual(State.name, "")
+
+    def test_instance(self):
+        """test instance of class"""
+        my_state = State()
+        self.assertEqual(my_state.name, "")
+        self.assertTrue(isinstance(my_state, BaseModel))
+
 
 if __name__ == '__main__':
     unittest.main()
