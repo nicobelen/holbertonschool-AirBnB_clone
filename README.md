@@ -14,6 +14,8 @@ $ chmod u+x console.py
 
 It is executed with the following command `./console.py`
 
+You can also type `python3 ./console.py` if you want to skip the permission part
+
 These are the commands that are used in our console and what they are for:
 
 - **Create**: Create a new instance of BaseModel.
@@ -27,12 +29,32 @@ These are the commands that are used in our console and what they are for:
 |**Objects**             |HTML|
 |-----------|-----------------------------|
 |User|      Name and other iformation about the user|
-|City|      |City in where the place is in|
-|State|     |State where the City is located|
-|Place|     |Information about, in this case the hotel|
-|Review|    |What people think of the place they stayed at|
-|Amenity|   |What features the place has|
+|City|      City in where the place is in|
+|State|     State where the City is located|
+|Place|     Information about, in this case the hotel|
+|Review|    What people think of the place they stayed at|
+|Amenity|   What features the place has|
 |-----------|-----------------------------|
+
+## How to execute commands:
+
+**Syntax**
+```
+<Command> <classname> <id>
+```
+
+> **Notice**: Note that we don't use id with the create, help and quit commands.
+
+## Examples:
+
+```
+$ (hbnb) create User
+a2324758-661d-46f0-8ac2-84e01e5c8aef
+```
+
+```
+show User a2324758-661d-46f0-8ac2-84e01e5c8aef
+```
 
 We created a simple flow of serealization/deserealization: Instance <-> Dictionary <-> JSON chain <-> archive.
 We created all of the classes utilyzed for AirBnB (User, State, City, Place...) that inherit the BaseModel.
