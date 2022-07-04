@@ -89,6 +89,8 @@ class HBNBCommand(cmd.Cmd):
             del(dic[key])
             storage.save()
             return
+        else:
+            print("** no instance found **")
 
     def do_all(self, line):
         arguments = line.split()
