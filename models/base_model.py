@@ -4,8 +4,6 @@
 """primary class BaseModel"""
 
 
-import sys
-from abc import ABC, abstractmethod
 import uuid
 from datetime import datetime
 from models import storage
