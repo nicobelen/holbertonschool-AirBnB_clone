@@ -59,3 +59,9 @@ a2324758-661d-46f0-8ac2-84e01e5c8aef
 ```
 $ (hbnb) show User a2324758-661d-46f0-8ac2-84e01e5c8aef
 ```
+
+## Authors:
+
+Daniel Muller [GitHub] (https://github.com/Vinill).
+Nicolas Belen [GitHub] (https://github.com/nicobelen).
+
