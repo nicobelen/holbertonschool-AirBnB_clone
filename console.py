@@ -139,7 +139,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
             return
-        
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
