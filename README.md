@@ -1,7 +1,8 @@
 # holbertonschool-AirBnB_clone
 Project of Holberton
 
-Description of Project:
+Description of Project:![logo](https://user-images.githubusercontent.com/98336206/177213626-cc439a3b-dd25-43c2-8e8c-f700954ddc47.jpg)
+
 
 What we did in this project, it's a Class that's in charge of the initialization, serealization and deserealization of our future instances.
 We created a simple flow of serealization/deserealization: Instance <-> Dictionary <-> JSON chain <-> archive.
