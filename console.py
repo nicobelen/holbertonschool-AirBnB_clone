@@ -69,6 +69,8 @@ class HBNBCommand(cmd.Cmd):
         if key in dic:
             print(dic[key])
             return
+        else:
+            print("** no instance found **")
 
     def do_destroy(self, line):
         arguments = line.split()
@@ -155,18 +157,17 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         arguments = line.split(".")
         if len(arguments) == 2:
-            if arguments[0] in clases:
-                if arguments[1] == "all()":
-                    self.do_all(arguments[0])
-                    return
-                elif arguments[1] == "count()":
-                    self.do_count(arguments[0])
-                    return
-                else:
-                    showsplit = arguments[1].split('(')
-                    splitid = showsplit[1][:-1]
-                    if showsplit[0] == "show":
-                        self.do_show(f"{arguments[0]} {splitid}")
+            if arguments[1] == "all()":
+                self.do_all(arguments[0])
+                return
+            elif arguments[1] == "count()":
+                self.do_count(arguments[0])
+                return
+            else:
+                showsplit = arguments[1].split('(')
+                showsplit[1] = showsplit[1][:-1]
+                if showsplit[0] == "show":
+                    self.do_show(f"{arguments[0]} {showsplit[1]}")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
